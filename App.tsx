@@ -15,6 +15,8 @@ import {
   Text,
   useColorScheme,
   View,
+  Pressable,
+  NativeModules,
 } from 'react-native';
 
 import {
@@ -56,10 +58,18 @@ function Section({children, title}: SectionProps): JSX.Element {
 }
 
 function App(): JSX.Element {
+  const {CalendarModule} = NativeModules;
+
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+  };
+
+  const onPress = () => {
+    console.log('We will invoke the native module here!');
+    const x = CalendarModule.createCalendarEvent('testName', 'testLocation');
+    console.log(x);
   };
 
   return (
@@ -76,6 +86,9 @@ function App(): JSX.Element {
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
+          <Pressable onPress={onPress}>
+            <Text style={styles.button}>Press to test</Text>
+          </Pressable>
           <Section title="Step One">
             Edit <Text style={styles.highlight}>App.tsx</Text> to change this
             screen and then come back to see your edits.
@@ -112,6 +125,15 @@ const styles = StyleSheet.create({
   },
   highlight: {
     fontWeight: '700',
+  },
+  button: {
+    textAlign: 'center',
+    fontSize: 24,
+    fontWeight: '700',
+    margin: 32,
+    padding: 24,
+    backgroundColor: 'blue',
+    color: 'white',
   },
 });
 

@@ -6,4 +6,4 @@ The idea is to use the default React Native example project, and add a native mo
 
 The plan is that this native module will be built directly within the project, and will not be distributed as an npm package.
 
-This project will follow the [instructions for native modules](https://reactnative.dev/docs/native-modules-android) to start.
+This project will follow the [instructions for native modules](https://reactnative.dev/docs/native-modules-android) to start. I'm most familiar with Java, so I'll build using their Java instructions.
